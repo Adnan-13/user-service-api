@@ -1,0 +1,7 @@
+Write n backend application with NodeJS that lets an HTTP client create a user and retrieve a user. Enhance functionality as you like but minimum is:
+Creating a user should be possible with one HTTP request like the one below:
+curl --data 'data necessary to create the user' http://<machine>/<endpoint>
+Retrieve a user with one HTTP request:
+curl http://<machine>/<endpoint>
+
+Within this exercise, try to show your skills in terms of programming.
