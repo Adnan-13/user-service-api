@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // Controllers
 app.use(require('./controller/home-controller'));
-app.use('/user', require('./controller/user-controller'));
+app.use('/users', require('./controller/user-controller'));
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);
