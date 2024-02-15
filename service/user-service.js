@@ -3,8 +3,8 @@ const mongoose = require('../config/db/db');
 
 class UserService {
     async getAllUsers() {
-        const result = await User.find();
-        return result;
+        const users = await User.find();
+        return users;
     }
 
     async getUserById(userId) {
@@ -20,18 +20,12 @@ class UserService {
     async updateUser(userId, updatedUser) {
         const currentUser = await User.findById(userId);
 
-        if (!currentUser) {
-            throw new Error('User not found');
-        }
-
-        // currentUser = { ...currentUser, ...updatedUser };
-
         Object.keys(updatedUser).forEach((key) => {
             currentUser[key] = updatedUser[key];
         });
 
-        const result = currentUser.save();
-        return result;
+        const savedUser = currentUser.save();
+        return savedUser;
     }
 
     async deleteUser(userId) {

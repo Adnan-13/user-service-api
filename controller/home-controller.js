@@ -1,4 +1,5 @@
 const express = require('express');
+const handleError = require('../errors/error-handler');
 
 const router = express.Router();
 
@@ -21,8 +22,9 @@ router.get('/health', (req, res) => {
             data: responseData,
         });
     } catch (error) {
-        console.error(`Error in ${req.method} - ${error.message}`);
-        return res.status(500).send('Internal Server Error');
+        const errorResponse = handleError(error);
+
+        return res.status(errorResponse.status).json(errorResponse);
     }
 });
 

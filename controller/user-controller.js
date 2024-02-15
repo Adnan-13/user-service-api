@@ -1,5 +1,6 @@
 const express = require('express');
 const userService = require('../service/user-service');
+const handleError = require('../errors/error-handler');
 
 const router = express.Router();
 
@@ -12,11 +13,9 @@ router.get('/', async (req, res) => {
             data: users,
         });
     } catch (error) {
-        console.error(`Error getting all users - ${error.message}`);
+        const errorResponse = handleError(error);
 
-        return res.status(400).json({
-            message: `Error getting all users - ${error.message}`,
-        });
+        return res.status(errorResponse.status).json(errorResponse);
     }
 });
 
@@ -30,11 +29,9 @@ router.get('/:id', async (req, res) => {
             data: user,
         });
     } catch (error) {
-        console.error(`Error getting user by ID - ${error.message}`);
+        const errorResponse = handleError(error);
 
-        return res.status(400).json({
-            message: `Error getting user by ID - ${error.message}`,
-        });
+        return res.status(errorResponse.status).json(errorResponse);
     }
 });
 
@@ -44,9 +41,7 @@ router.post('/create', async (req, res) => {
         const createdUser = await userService.createUser(user);
 
         if (!createdUser) {
-            return res.status(400).json({
-                message: 'Error creating user',
-            });
+            throw new Error('User not created');
         }
 
         return res.status(201).json({
@@ -54,11 +49,9 @@ router.post('/create', async (req, res) => {
             data: createdUser,
         });
     } catch (error) {
-        console.error(`Error creating user - ${error.message}`);
+        const errorResponse = handleError(error);
 
-        return res.status(400).json({
-            message: `Error creating user - ${error.message}`,
-        });
+        return res.status(errorResponse.status).json(errorResponse);
     }
 });
 
@@ -77,23 +70,14 @@ router.post('/update', async (req, res) => {
             userToUpdate
         );
 
-        if (!updatedUser) {
-            return res.status(400).json({
-                message: 'Error updating user',
-                data: updatedUser,
-            });
-        }
-
         return res.status(200).json({
             message: 'Success',
             data: updatedUser,
         });
     } catch (error) {
-        console.error(`Error updating user - ${error.message}`);
+        const errorResponse = handleError(error);
 
-        return res.status(400).json({
-            message: `Error updating user - ${error.message}`,
-        });
+        return res.status(errorResponse.status).json(errorResponse);
     }
 });
 
@@ -106,11 +90,9 @@ router.delete('/:id', async (req, res) => {
             message: 'Success',
         });
     } catch (error) {
-        console.error(`Error deleting user - ${error.message}`);
+        const errorResponse = handleError(error);
 
-        return res.status(400).json({
-            message: `Error deleting user - ${error.message}`,
-        });
+        return res.status(errorResponse.status).json(errorResponse);
     }
 });
 
