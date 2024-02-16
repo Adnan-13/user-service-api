@@ -1,6 +1,6 @@
 {
     "port": 2525,
-    "mongoConnectionString": "mongodb://localhost:27017/userdb",
+    "mongoConnectionString": "mongodb+srv://dbo:Asdf1234@adnan13.nauzo2a.mongodb.net/userdb",
     "jwtSecret": "secretkeyAsdf@1234",
     "jwtExpireTime": 86400
 }
