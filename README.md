@@ -10,6 +10,7 @@ Welcome to the User Service API. This API is designed to provide a simple way to
     -   [Prerequisites](#prerequisites)
     -   [Installation](#installation)
     -   [Usage](#usage)
+    -   [Unit Tests](#unit-tests)
 
 ## Getting Started
 
@@ -45,6 +46,7 @@ npm install
     "jwtExpireTime": 86400
 }
 ```
+Please note that the `mongoConnectionString` should be a valid connection string to your mongoDB database. Right now the application is configured to use my account on mongoDB Atlas which is temporary and will be removed soon. You can use your own mongoDB database by creating an account on [MongoDB Atlas](https://www.mongodb.com/atlas) and getting a connection string from there or you can use a local mongoDB database by installing it on your machine and getting a connection string from there.
 
 4. After you have made the necessary changes to the `config.json` file, you can now start the application by running the following command:
 
@@ -54,7 +56,7 @@ npm run dev
 
 ## Usage
 
-The API is now running on `http://localhost:2525`. You can use a tool like [Postman](https://www.postman.com/) to test the API. Alos inside the `postman` directory you will find a file called `User_Service.postman_collection.json`. You can import this file into Postman and you will find all the routes and their descriptions in the collection. You can use this to test the API.
+The API is now running on `http://localhost:2525`. You can use a tool like [Postman](https://www.postman.com/) to test the API. Also inside the `postman` directory you will find a file called `User_Service.postman_collection.json`. You can import this file into Postman and you will find all the routes and their descriptions in the collection. You can use this to test the API.
 
 The API has authentication and authorization. You need to register a user and then login to get a token. You can then use the token to access the protected routes. There are three roles in the system: `BASIC_USER`, `ADMIN`, and `MODERATOR`.
 
@@ -68,9 +70,9 @@ Prefix all routes with your base URL. For example, `http://localhost:2525`. All 
 | --- | --- | --- | --- | --- |
 | `/` | GET | Welcome message | No | N/A |
 | `/health` | GET | Health check. Returns the time of request and also you can send any payload with the request and it will be returned in the response | No | N/A |
-| `/auth/register` | POST | Register a user | No | N/A |
-| `/auth/login` | POST | Login a user | No | N/A |
-| `/auth/logout` | POST | Logout a user | No | N/A |
+| `/auth/register` | POST | Register user | No | N/A |
+| `/auth/login` | POST | Login user | No | N/A |
+| `/auth/logout` | POST | Logout user | No | N/A |
 | `/dashboard/user` | GET | Sends a welcome message to the user mentioning their name | Yes | ADMIN, MODERATOR, BASIC_USER | 
 | `/dashboard/admin` | GET | Sends a welcome message to the admin mentioning their name | Yes | ADMIN |
 | `/dashboard/moderator` | GET | Sends a welcome message to the moderator mentioning their name | Yes | ADMIN, MODERATOR |
@@ -81,3 +83,13 @@ Prefix all routes with your base URL. For example, `http://localhost:2525`. All 
 | `/users/:id` | DELETE | Deletes a user by ID. This endpoint is also available to the user to delete their own account and to the admins. | Yes | ADMIN, [User to be deleted] |
 | `/users/add-role` | POST | Adds a role to a user. This endpoint is available to the admins. | Yes | ADMIN |
 | `/users/remove-role` | POST | Removes a role from a user. This endpoint is available to the admins. | Yes | ADMIN |
+
+## Unit Tests
+
+The application has unit tests written using [Jest](https://jestjs.io/). You can run the tests by running the following command:
+
+```bash
+npm test
+```
+
+This will run all the tests and show the results in the terminal. There are authentication tests which are currently based on my mongoDB Atlas database. So, for the current tests to pass, you need to have the same users in your database or use my database while it is still available. You can also change the tests to suit your environment and your users.
