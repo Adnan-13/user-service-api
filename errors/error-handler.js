@@ -29,6 +29,18 @@ const handleError = (err) => {
         error.message = err.message;
     }
 
+    if (err.message.toLowerCase().includes('already exists')) {
+        specificErrorNotFound = false;
+        error.status = 400;
+        error.message = err.message;
+    }
+
+    if (err.message.toLowerCase().includes('cannot read properties of null')) {
+        specificErrorNotFound = false;
+        error.status = 404;
+        error.message = 'Not found';
+    }
+
     if (err.code === 11000) {
         specificErrorNotFound = false;
         error.email = 'Email already exists';

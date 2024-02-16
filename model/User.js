@@ -39,6 +39,12 @@ const userSchema = new mongoose.Schema({
         state: String,
         zip: String,
     },
+    roles: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'role',
+        },
+    ],
 });
 
 userSchema.pre('save', function (next) {

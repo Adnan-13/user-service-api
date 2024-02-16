@@ -3,6 +3,7 @@ const { jwtExpireTime } = require('../config/config');
 const authService = require('../service/auth-service');
 const userService = require('../service/user-service');
 const handleError = require('../errors/error-handler');
+const roleService = require('../service/role-service');
 
 const router = express.Router();
 
@@ -10,6 +11,7 @@ router.post('/register', async (req, res) => {
     try {
         const user = req.body;
         const createdUser = await userService.createUser(user);
+        await roleService.addRoleToUser(createdUser._id, 'BASIC_USER');
         const token = authService.generateToken(
             createdUser._id,
             createdUser.email

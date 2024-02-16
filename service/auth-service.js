@@ -1,6 +1,7 @@
 const User = require('../model/User');
 const jwt = require('jsonwebtoken');
 const { jwtSecret, jwtExpireTime } = require('../config/config');
+const roleService = require('./role-service');
 
 class AuthService {
     async authenticateUser(email, password) {
@@ -37,6 +38,30 @@ class AuthService {
                 message: 'Unauthorized',
             });
         }
+    }
+
+    requireRole(role) {
+        return async (req, res, next) => {
+            const user = res.locals.currentUser;
+
+            if (!user) {
+                return res.status(401).json({
+                    message: 'Unauthorized',
+                });
+            }
+
+            const rolesInDb = await roleService.getAllRoles();
+
+            const roleToCheck = rolesInDb.find((r) => r.name === role);
+
+            if (user.roles.includes(roleToCheck._id)) {
+                return next();
+            }
+
+            return res.status(401).json({
+                message: 'Unauthorized',
+            });
+        };
     }
 
     checkUser(req, res, next) {
