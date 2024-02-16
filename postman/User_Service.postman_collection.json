@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "4edb0782-c00b-459d-873c-b68e1003876f",
+		"name": "User Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17349087",
+		"_collection_link": "https://gold-water-770929.postman.co/workspace/iCurify~2874b6d3-1adc-4999-99ce-08324e6f23bf/collection/17349087-4edb0782-c00b-459d-873c-b68e1003876f?action=share&source=collection_link&creator=17349087"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Adnan\",\r\n    \"email\": \"adnan@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"admin@1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "AdminDashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dashboard/admin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dashboard",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserDashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dashboard/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dashboard",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModeratorDashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dashboard/moderator",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dashboard",
+								"moderator"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Home",
+			"item": [
+				{
+					"name": "Landing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HealthCheck",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"testField\": \"Test Value\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "AllUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "byId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/65cf3a950916b227f44aa9668",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"65cf3a950916b227f44aa9668"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"admin@1234\",\r\n    \"address\": {\r\n        \"street\": \"B block, Mirpur\",\r\n        \"city\": \"Dhaka\",\r\n        \"zip\": \"1216\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"65cf41852fd331fede79dd14\",\r\n    \"address\": {\r\n        \"street\": \"B block, Mirpur\",\r\n        \"city\": \"Dhaka\",\r\n        \"zip\": \"1216\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/65cf41852fd331fede79dd14",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"65cf41852fd331fede79dd14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add-role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"65cf3a950916b227f44a9668\",\r\n    \"role\": \"MODERATOR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/add-role",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"add-role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove-role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"65cf3a950916b227f44a9668\",\r\n    \"role\": \"MODERATOR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/remove-role",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"remove-role"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:2525"
+		}
+	]
+}
