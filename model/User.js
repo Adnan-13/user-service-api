@@ -18,7 +18,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter a password'],
         minlength: [8, 'Minimum password length is 8 characters'],
-        select: false,
     },
     dob: Date,
     enabled: {
@@ -47,14 +46,15 @@ userSchema.pre('save', function (next) {
     next();
 });
 
-userSchema.methods.comparePassword = function (password) {
-    return bcrypt.compare(password, this.password);
+userSchema.methods.comparePassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
 };
 
-userSchema.pre('save', async function () {
+userSchema.pre('save', async function (next) {
     if (this.isModified('password')) {
         this.password = await bcrypt.hash(this.password, 10);
     }
+    next();
 });
 
 module.exports = mongoose.model('user', userSchema);

@@ -23,6 +23,12 @@ const handleError = (err) => {
         error.message = err.message;
     }
 
+    if (err.message.includes('Invalid email or password')) {
+        specificErrorNotFound = false;
+        error.status = 401;
+        error.message = err.message;
+    }
+
     if (err.code === 11000) {
         specificErrorNotFound = false;
         error.email = 'Email already exists';

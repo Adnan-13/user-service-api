@@ -1,4 +1,6 @@
 {
     "port": 2525,
-    "mongoConnectionString": "mongodb://localhost:27017/userdb"
+    "mongoConnectionString": "mongodb://localhost:27017/userdb",
+    "jwtSecret": "secretkeyAsdf@1234",
+    "jwtExpireTime": 86400
 }
