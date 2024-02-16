@@ -11,6 +11,7 @@ Welcome to the User Service API. This API is designed to provide a simple way to
     -   [Installation](#installation)
     -   [Usage](#usage)
     -   [Unit Tests](#unit-tests)
+    -   [Project Packages & Versions](#project-packages--versions)
 
 ## Getting Started
 
@@ -93,3 +94,20 @@ npm test
 ```
 
 This will run all the tests and show the results in the terminal. There are authentication tests which are currently based on my mongoDB Atlas database. So, for the current tests to pass, you need to have the same users in your database or use my database while it is still available. You can also change the tests to suit your environment and your users.
+
+
+## Project Packages & Versions
+The project uses Node.js version `20.11.0` and npm `10.2.4`. The following packages are used in the project:
+
+| Package | Version | Dependency Type |
+| --- | --- | --- |
+| bcrypt | 5.1.1 | Dependency |
+| body-parser | 1.20.2 | Dependency |
+| cookie-parser | 1.4.6 | Dependency |
+| express | 4.18.2 | Dependency |
+| jsonwebtoken | 9.0.2 | Dependency |
+| mongoose | 8.1.2 | Dependency |
+| validator | 13.11.0 | Dependency |
+| jest | 29.7.0 | Dev Dependency |
+| nodemon | 3.0.3 | Dev Dependency |
+| supertest | 6.3.4 | Dev Dependency |
