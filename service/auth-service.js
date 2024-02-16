@@ -39,6 +39,26 @@ class AuthService {
         }
     }
 
+    checkUser(req, res, next) {
+        let currentUser = null;
+
+        const token = req.cookies.jwt;
+
+        if (!token) {
+            return next();
+        }
+
+        jwt.verify(token, jwtSecret, async (err, decodedToken) => {
+            if (err) {
+                return next();
+            } else {
+                currentUser = await User.findById(decodedToken.id);
+                res.locals.currentUser = currentUser;
+                return next();
+            }
+        });
+    }
+
     generateToken(id, email) {
         return jwt.sign({ id, email }, jwtSecret, {
             expiresIn: jwtExpireTime,

@@ -2,12 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { port } = require('./config/config');
+const { checkUser } = require('./service/auth-service');
 
 const app = express();
 const PORT = port || 3000;
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+// Middleware
+app.get('*', checkUser);
 
 // Controllers
 app.use(require('./controller/home-controller'));
