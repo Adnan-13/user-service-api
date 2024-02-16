@@ -13,6 +13,7 @@ app.use(cookieParser());
 app.use(require('./controller/home-controller'));
 app.use('/auth', require('./controller/auth-controller'));
 app.use('/users', require('./controller/user-controller'));
+app.use('/dashboard', require('./controller/dashboard-controller'));
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);

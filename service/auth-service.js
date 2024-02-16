@@ -18,6 +18,27 @@ class AuthService {
 
         return user;
     }
+
+    requireAuth(req, res, next) {
+        const token = req.cookies.jwt;
+
+        if (token) {
+            jwt.verify(token, jwtSecret, (err, decodedToken) => {
+                if (err) {
+                    return res.status(401).json({
+                        message: 'Unauthorized',
+                    });
+                } else {
+                    next();
+                }
+            });
+        } else {
+            return res.status(401).json({
+                message: 'Unauthorized',
+            });
+        }
+    }
+
     generateToken(id, email) {
         return jwt.sign({ id, email }, jwtSecret, {
             expiresIn: jwtExpireTime,
